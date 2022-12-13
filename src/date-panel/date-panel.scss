@@ -1,0 +1,70 @@
+@import './variables.scss';
+
+.links {
+  &__date {
+    opacity: 0;
+  }
+}
+
+.date-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 25px 20px 35px;
+  background-color: #ffffff;
+}
+
+.datepicker-input {
+  position: relative;
+  left: 0;
+  top: 0;
+  margin-right: 30px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    background-image: url('../assets/date.svg');
+  }
+}
+
+.days {
+  display: flex;
+  flex-direction: row;
+  &__day {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 7px;
+    border: none;
+    border-bottom: 3px solid #b8b9b9;
+    outline: none;
+    background: $backgroundDayColor;
+    text-transform: uppercase;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    line-height: 24px;
+    color: #b8b9b9;
+
+    &_active {
+      border-bottom: 4px solid $backgroundLinkColor;
+      color: $backgroundLinkColor;
+    }
+  }
+
+  &__date {
+    font-family: 'Open Sans';
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

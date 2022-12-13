@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+.header {
+  background-color: $backgroundColorHeader;
+  filter: drop-shadow(0px 5px 10px rgba(37, 40, 41, 0.3));
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 30px;
+  }
+
+  &__logo {
+    margin-left: 90px;
+  }
+}
+
+.navigation {
+  display: flex;
+  column-gap: 70px;
+
+  &__link,
+  &__lang {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}

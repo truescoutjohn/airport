@@ -1,0 +1,48 @@
+@import './variables.scss';
+
+.links {
+  display: flex;
+  margin: 0 auto;
+
+  &__link {
+    &_active {
+      background-color: $backgroundActiveLinkColor;
+      z-index: 2;
+      color: $backgroundLinkColor;
+    }
+
+    flex-basis: 60%;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 60px 60px 0px 0px;
+    text-align: center;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 60px;
+    background-color: $backgroundLinkColor;
+    color: $backgroundActiveLinkColor;
+
+    &:first-of-type {
+      margin-right: -50px;
+      padding-left: 220px;
+      padding-right: 70px;
+    }
+
+    &:last-of-type {
+      margin-left: -50px;
+      padding-right: 220px;
+      padding-left: 70px;
+    }
+  }
+
+  &__image {
+    filter: brightness(0) saturate(100%) invert(94%) sepia(100%) saturate(0%) hue-rotate(16deg)
+      brightness(105%) contrast(102%);
+
+    &_active {
+      filter: brightness(0) saturate(100%) invert(78%) sepia(45%) saturate(6812%) hue-rotate(162deg)
+        brightness(103%) contrast(87%);
+    }
+  }
+}

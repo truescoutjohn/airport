@@ -1,0 +1,71 @@
+@import 'variables.scss';
+
+.main {
+  padding: 40px 0 20px;
+  background-color: $backgroundColorMain;
+
+  &__wrapper {
+    padding: 0 190px;
+  }
+
+  &__heading {
+    display: inline-block;
+    margin-bottom: 24px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 70px;
+    line-height: 80px;
+    text-transform: uppercase;
+    color: #2f2f2f;
+  }
+
+  &__form {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  &__form-wrapper {
+    margin: 0 auto 40px;
+    width: 64%;
+  }
+
+  &__input {
+    padding-left: 70px;
+    width: 72%;
+    height: 80px;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    color: #95989a;
+
+    &:placeholder {
+      color: #95989a;
+    }
+  }
+
+  &__submit {
+    cursor: pointer;
+    height: 80px;
+    width: 200px;
+    background: #1eb7ee;
+    border-radius: 0px 80px 0px 0px;
+    border: none;
+    outline: none;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 39px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+}
+
+.fa-search {
+  position: absolute;
+  bottom: 25px;
+  left: 15px;
+  z-index: 1;
+  font-size: 34px;
+  color: #95989a;
+}

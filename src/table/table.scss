@@ -1,0 +1,39 @@
+.table {
+  width: 100%;
+  background-color: white;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.table tr {
+  border: none;
+  &:hover {
+    background-color: darken(#0066870a, 30%);
+  }
+}
+
+.table td,
+.table th {
+  padding: 15px 0;
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Open Sans';
+  font-size: 18px;
+  line-height: 40px;
+  color: #212529;
+}
+
+.table img {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.table .logo-wrapper {
+  padding-left: 30px;
+  text-align: left;
+}
+
+tbody tr:nth-of-type(odd) {
+  background-color: #0066870a;
+}
