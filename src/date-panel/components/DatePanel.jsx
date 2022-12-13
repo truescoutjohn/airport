@@ -13,7 +13,10 @@ const DatePanel = ({ date, setDate }) => {
     const isSiblingDay =
       normalizedDate >= moment(makeYesterday(today)).format('YYYY-MM-DD HH:mm') &&
       normalizedDate <= moment(makeTomorrow(today)).format('YYYY-MM-DD HH:mm');
-    document.querySelector('.days__day_active').classList.remove('days__day_active');
+    const activeButton = document.querySelector('.days__day_active');
+    if (activeButton) {
+      activeButton.classList.remove('days__day_active');
+    }
     if (isSiblingDay) {
       [...document.querySelectorAll('.days__day')]
         .find(day => day.dataset.date === normalizedDate)
