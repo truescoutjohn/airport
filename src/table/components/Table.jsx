@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import NotFound from './NotFound.jsx';
 import Spinner from './Spinner.jsx';
 import TableBody from './TableBody.jsx';
 import getFilterText from '../../form/form.selectors.js';
@@ -10,6 +11,11 @@ const Table = ({ flights, isFetching, filterText }) => {
   if (isFetching) {
     return <Spinner />;
   }
+
+  if (flights.length === 0) {
+    return <NotFound />;
+  }
+
   const filteredFlights = flights.filter(
     flight =>
       (flight['airportToID.name'] ?? flight['airportFromID.name'])
@@ -34,12 +40,9 @@ const Table = ({ flights, isFetching, filterText }) => {
   );
 };
 
-const mapState = state => {
-  console.log(state);
-  return {
-    filterText: getFilterText(state),
-  };
-};
+const mapState = state => ({
+  filterText: getFilterText(state),
+});
 
 Table.propTypes = {
   flights: PropTypes.arrayOf(PropTypes.shape()).isRequired,

@@ -1,48 +1,57 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import getDate from '../../main/date.selectors.js';
 import Day from './Day.jsx';
 
 const Days = ({ selectDay, date, makeYesterday, makeTomorrow }) => {
+  const [activeButton, setActiveButton] = useState(null);
   const yesterdayButton = useRef(null);
   const todayButton = useRef(null);
   const tomorrowButton = useRef(null);
 
   useEffect(() => {
-    selectDay(
-      day => day.current.dataset.date === moment(date).format('YYYY-MM-DD HH:mm'),
+    const selectedButton = selectDay(
+      button => button.current.dataset.date === moment(date).format('YYYY-MM-DD HH:mm'),
       yesterdayButton,
+      todayButton,
+      tomorrowButton,
     );
-  }, [yesterdayButton, todayButton, tomorrowButton]);
-
+    if (selectedButton) {
+      setActiveButton(selectedButton.current);
+    } else {
+      setActiveButton(selectedButton);
+    }
+  }, [yesterdayButton, todayButton, tomorrowButton, date]);
   return (
     <div className="days">
-      <Day button={yesterdayButton} makeSiblingDate={makeYesterday} nameSiblingDate="yesterday" />
+      <Day
+        button={yesterdayButton}
+        makeSiblingDate={makeYesterday}
+        nameSiblingDate="yesterday"
+        date={date}
+        isActiveButton={activeButton === yesterdayButton.current}
+      />
       <Day
         button={todayButton}
         makeSiblingDate={(today = new Date()) => today}
         nameSiblingDate="today"
+        date={date}
+        isActiveButton={activeButton === todayButton.current}
       />
-      <Day button={tomorrowButton} makeSiblingDate={makeTomorrow} nameSiblingDate="tomorrow" />
-      {/* <button
-        className="days__day days__today"
-        onClick={event => handleClickDay(event, 'today')}
-        data-date={moment(today).format('YYYY-MM-DD HH:mm')}
-        ref={todayButton}
-      >
-        <span className="days__date">{`${today.getDate()}/${today.getMonth() + 1}`}</span>
-        <span className="days__description">сьогодні</span>
-      </button>
-      <button
-        className="days__day days__tomorrow"
-        onClick={event => handleClickDay(event, 'tomorrow')}
-        data-date={moment(makeTomorrow(today)).format('YYYY-MM-DD HH:mm')}
-        ref={tomorrowButton}
-      >
-        <span className="days__date">{`${today.getDate() + 1}/${today.getMonth() + 1}`}</span>
-        <span className="days__description">завтра</span>
-      </button> */}
+      <Day
+        button={tomorrowButton}
+        makeSiblingDate={makeTomorrow}
+        nameSiblingDate="tomorrow"
+        date={date}
+        isActiveButton={activeButton === tomorrowButton.current}
+      />
     </div>
   );
 };
 
-export default Days;
+const mapProps = state => ({
+  date: getDate(state),
+});
+
+export default connect(mapProps, null)(Days);

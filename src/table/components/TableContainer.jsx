@@ -9,7 +9,6 @@ import { setUrl, setQueryParams } from '../../utils/url.utils.js';
 import Table from './Table.jsx';
 
 const TableContainer = ({ urlPart, date, setSearchParams, filterText }) => {
-  console.log(date);
   const location = useLocation();
   const navigation = useNavigate();
   const [flights, setFlights] = useState([]);

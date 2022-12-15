@@ -1,15 +1,12 @@
 export const determineDate = (whenDay, setCallbackFunc, today) => {
   switch (whenDay) {
     case 'yesterday':
-      // setDate(new Date(today.setDate(today.getDate() - 1)));
       setCallbackFunc(today.getDate() - 1);
       break;
     case 'today':
-      // setDate(today);
       setCallbackFunc(today.getDate());
       break;
     case 'tomorrow':
-      // setDate(new Date(today.setDate(today.getDate() + 1)));
       setCallbackFunc(today.getDate() + 1);
       break;
     default:

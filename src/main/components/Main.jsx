@@ -13,7 +13,7 @@ const Main = ({ date, setDate }) => {
 
   useEffect(() => {
     if (searchParams.get('date')) {
-      const [year, month, day] = searchParams.get('date').split('-');
+      const [day, month, year] = searchParams.get('date').split('-');
       setDate(
         new Date(year, month - 1, day, date.getHours(), date.getMinutes(), date.getSeconds()),
       );

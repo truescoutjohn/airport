@@ -10,14 +10,27 @@ const translate = {
   tomorrow: 'завтра',
 };
 
-const Day = ({ setDate, button, makeSiblingDate, nameSiblingDate }) => {
+const Day = ({ setDate, button, makeSiblingDate, nameSiblingDate, isActiveButton }) => {
   const today = new Date();
   const [showingDate, setShowingDate] = useState(null);
 
+  const addActiveClassAccordingButton = () => {
+    console.log('Findasdasdasd', isActiveButton);
+    if (isActiveButton) {
+      button.current.classList.add('days__day_active');
+    } else {
+      button.current.classList.remove('days__day_active');
+    }
+  };
+
   useEffect(() => {
     determineDate(nameSiblingDate, setShowingDate, today);
-    console.log(showingDate);
   }, []);
+
+  useEffect(() => {
+    button.current.classList.add(`days__${nameSiblingDate}`);
+    addActiveClassAccordingButton();
+  }, [isActiveButton]);
 
   const setActiveElement = event => {
     const activeElement = document.querySelector('.days__day_active');
@@ -50,7 +63,7 @@ const Day = ({ setDate, button, makeSiblingDate, nameSiblingDate }) => {
 
   return (
     <button
-      className="days__day days__yesterday"
+      className="days__day"
       onClick={event => handleClickDay(event, nameSiblingDate)}
       data-date={moment(makeSiblingDate(today)).format('YYYY-MM-DD HH:mm')}
       ref={button}
