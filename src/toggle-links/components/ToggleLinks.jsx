@@ -2,9 +2,10 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../toggle-links.scss';
 
-const ToggleLinks = ({ queryParams }) => {
+const ToggleLinks = ({ queryParams, filterText }) => {
   const navigation = useNavigate();
-  const query = queryParams === '' ? '' : `date=${queryParams}`;
+  let query = queryParams === '' ? '' : `date=${queryParams}`;
+  query += filterText === '' ? '' : `&search=${filterText}`;
   const setUrl = href => {
     if (query !== '') {
       navigation({

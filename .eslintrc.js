@@ -1,9 +1,5 @@
 module.exports = {
-  extends: [
-    'airbnb-base',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['airbnb-base', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   env: {
     es6: true,
     node: true,
@@ -30,6 +26,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'arrow-body-style': 1,
     'prefer-arrow-callback': 1,
+    'no-labels': 0,
   },
   settings: {
     'import/resolver': {

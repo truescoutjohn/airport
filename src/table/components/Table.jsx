@@ -1,13 +1,15 @@
 import React from 'react';
-import moment from 'moment';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Spinner from './Spinner.jsx';
+import TableBody from './TableBody.jsx';
+import getFilterText from '../../form/form.selectors.js';
 import '../table.scss';
 
 const Table = ({ flights, isFetching, filterText }) => {
   if (isFetching) {
     return <Spinner />;
   }
-  const getTimeFromDate = date => moment(new Date(date)).format('HH:mm');
   const filteredFlights = flights.filter(
     flight =>
       (flight['airportToID.name'] ?? flight['airportFromID.name'])
@@ -27,38 +29,22 @@ const Table = ({ flights, isFetching, filterText }) => {
           <th>Рейс</th>
         </tr>
       </thead>
-      <tbody>
-        {filteredFlights.map(flight => (
-          <tr key={flight.ID}>
-            <td>{flight.term}</td>
-            <td>
-              {flight.timeDepShedule
-                ? getTimeFromDate(flight.timeDepFact)
-                : getTimeFromDate(flight.timeTakeofFact)}
-            </td>
-
-            <td>{flight['airportToID.name'] ?? flight['airportFromID.name']}</td>
-            <td>
-              {flight.timeDepFact ? 'Вилетів ' : 'Прибув '}
-              {!Number.isNaN(Date.parse(flight.timeDepFact)) && flight.timeDepShedule
-                ? getTimeFromDate(flight.timeDepFact)
-                : getTimeFromDate(flight.timeTakeofFact)}
-            </td>
-            <td className="logo-wrapper">
-              <img
-                width="30"
-                height="30"
-                src={flight.airline.en.logoSmallName}
-                alt="small logo company"
-              />
-              {flight.airline.en.name}
-            </td>
-            <td>{flight.codeShareData[0].codeShare}</td>
-          </tr>
-        ))}
-      </tbody>
+      <TableBody filteredFlights={filteredFlights} />
     </table>
   );
 };
 
-export default Table;
+const mapState = state => {
+  console.log(state);
+  return {
+    filterText: getFilterText(state),
+  };
+};
+
+Table.propTypes = {
+  flights: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  filterText: PropTypes.string,
+};
+
+export default connect(mapState, null)(Table);

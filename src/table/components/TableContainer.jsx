@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
-
+import { connect } from 'react-redux';
+import getFilterText from '../../form/form.selectors.js';
+import getDate from '../../main/date.selectors.js';
+import handleGetFlightRequest from '../../utils/request.utils.js';
+import { setUrl, setQueryParams } from '../../utils/url.utils.js';
 import Table from './Table.jsx';
 
 const TableContainer = ({ urlPart, date, setSearchParams, filterText }) => {
+  console.log(date);
   const location = useLocation();
   const navigation = useNavigate();
   const [flights, setFlights] = useState([]);
@@ -21,34 +26,24 @@ const TableContainer = ({ urlPart, date, setSearchParams, filterText }) => {
 
   useEffect(() => {
     setIsFetching(true);
-    console.log(date);
-    if (date && moment(new Date()).format('DD-MM-YYYY') !== moment(date).format('DD-MM-YYYY')) {
-      console.log(date);
-      setSearchParams({
-        date: moment(date).format('DD-MM-YYYY'),
-      });
+    const selectedDate = moment(date).format('DD-MM-YYYY');
+    const currentDate = moment(new Date()).format('DD-MM-YYYY');
 
-      fetch(`https://api.iev.aero/api/flights/${moment(date).format('DD-MM-YYYY')}`)
-        .then(response => response.json())
-        .then(responseFlights => {
-          setIsFetching(false);
-          setFlights(makeFlightsUnique(responseFlights.body[urlPart]));
-        });
+    if (date && selectedDate !== currentDate) {
+      setQueryParams(filterText, date, setSearchParams);
+      handleGetFlightRequest(selectedDate, urlPart, setIsFetching, setFlights, makeFlightsUnique);
     } else {
-      const newDate = moment(new Date()).format('DD-MM-YYYY');
-      console.log(newDate);
-      fetch(`https://api.iev.aero/api/flights/${newDate}`)
-        .then(response => response.json())
-        .then(responseFlights => {
-          setIsFetching(false);
-          setFlights(makeFlightsUnique(responseFlights.body[urlPart]));
-        });
-
-      navigation(location.pathname);
+      handleGetFlightRequest(currentDate, urlPart, setIsFetching, setFlights, makeFlightsUnique);
+      setUrl(filterText, navigation, location);
     }
-  }, [urlPart, date]);
+  }, [urlPart, date, filterText]);
 
-  return <Table flights={flights} isFetching={isFetching} filterText={filterText} />;
+  return <Table flights={flights} isFetching={isFetching} />;
 };
 
-export default TableContainer;
+const mapState = state => ({
+  filterText: getFilterText(state),
+  date: getDate(state),
+});
+
+export default connect(mapState, null)(TableContainer);
