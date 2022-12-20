@@ -1,1 +1,136 @@
 @import './variables.scss';
+
+.footer {
+  background-color: #595959;
+
+  &__wrapper {
+    padding: 40px 190px;
+  }
+
+  &__top,
+  &__bottom {
+    display: flex;
+    column-gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  &__bottom {
+    column-gap: 92px;
+  }
+
+  &__heading {
+    font-family: 'Open Sans';
+    margin: 0 0 10px;
+    color: #ffffff;
+  }
+
+  &__horizontal-line {
+    margin-bottom: 20px;
+    width: 100%;
+    border: none;
+    border-top: 1px solid #b8bdc1;
+  }
+}
+
+.navigation-info {
+  &__item {
+    margin-bottom: 10px;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-family: 'Open Sans';
+    line-height: 24px;
+    color: #ffffff;
+  }
+}
+
+.fourth-column {
+  &__label-phone {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    line-height: 16px;
+    color: #ffffff;
+  }
+
+  &__navigation {
+    display: flex;
+    column-gap: 30px;
+  }
+
+  &__label-link {
+    margin-bottom: 11px;
+    color: #ffffff;
+  }
+
+  &__navigation-link {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    &_facebook {
+      background-image: url(../assets/facebook.svg);
+    }
+
+    &_twitter {
+      background-image: url(../assets/twitter.svg);
+    }
+
+    &_instagram {
+      background-image: url(../assets/instagram.svg);
+    }
+
+    &_youtube {
+      background-image: url(../assets/youtube.svg);
+    }
+
+    &_linkedin {
+      background-image: url(../assets/linkedin.svg);
+    }
+  }
+
+  &__phone {
+    margin-bottom: 14px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #ffffff;
+  }
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Open Sans';
+  &__years {
+    font-size: 12px;
+    line-height: 18px;
+    color: #b8bdc1;
+  }
+
+  &__description {
+    font-size: 12px;
+    line-height: 18px;
+    color: #b8bdc1;
+  }
+}
+
+.middle-column {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Open Sans';
+  &__title {
+    font-size: 12px;
+    line-height: 18px;
+    color: #b8bdc1;
+  }
+
+  &__name {
+    font-size: 12px;
+    line-height: 18px;
+    color: #b8bdc1;
+  }
+}
