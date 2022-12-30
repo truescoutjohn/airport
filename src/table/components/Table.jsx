@@ -12,7 +12,7 @@ const Table = ({ flights, isFetching, filterText }) => {
     return <Spinner />;
   }
 
-  if (flights.length === 0) {
+  if (!isFetching && flights.length === 0) {
     return <NotFound />;
   }
 

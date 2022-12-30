@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   padding: 25px 20px 35px;
-  background-color: #ffffff;
+  background-color: $datePanelBackgroundColor;
 }
 
 .datepicker-input {
@@ -47,14 +47,14 @@
     align-items: center;
     padding: 7px;
     border: none;
-    border-bottom: 3px solid #b8b9b9;
+    border-bottom: 3px solid $dayBorderBottomColor;
     outline: none;
     background: $backgroundDayColor;
     text-transform: uppercase;
     font-family: 'Open Sans';
     font-weight: 700;
     line-height: 24px;
-    color: #b8b9b9;
+    color: $dayFontColor;
 
     &_active {
       border-bottom: 4px solid $backgroundLinkColor;

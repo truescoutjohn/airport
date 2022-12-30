@@ -2,21 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, useSearchParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import DatePanel from '../../date-panel/components/DatePanel.jsx';
+import * as filterAction from '../../form/form.actions.js';
 import * as dateActions from '../date.actions.js';
 import getDate from '../date.selectors.js';
 import Form from '../../form/components/Form.jsx';
 import TableContainer from '../../table/components/TableContainer.jsx';
 import ToggleLinks from '../../toggle-links/components/ToggleLinks.jsx';
 
-const Main = ({ date, setDate }) => {
+const Main = ({ date, setDate, setFilterText }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  console.log('QWERTY', date);
   useEffect(() => {
-    if (searchParams.get('date')) {
-      const [day, month, year] = searchParams.get('date').split('-');
+    const queryParamDate = searchParams.get('date');
+    const queryParamSearch = searchParams.get('search');
+    if (queryParamDate) {
+      const [day, month, year] = queryParamDate.split('-');
       setDate(
         new Date(year, month - 1, day, date.getHours(), date.getMinutes(), date.getSeconds()),
       );
+    }
+    if (queryParamSearch) {
+      setFilterText(queryParamSearch);
     }
   }, []);
 
@@ -56,6 +62,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setDate: state => dispatch(dateActions.setDate(state)),
+  setFilterText: state => dispatch(filterAction.setFilterText(state)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

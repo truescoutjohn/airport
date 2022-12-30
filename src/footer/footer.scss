@@ -1,7 +1,7 @@
 @import './variables.scss';
 
 .footer {
-  background-color: #595959;
+  background-color: $footerBackgroundColor;
 
   &__wrapper {
     padding: 40px 190px;
@@ -21,14 +21,14 @@
   &__heading {
     font-family: 'Open Sans';
     margin: 0 0 10px;
-    color: #ffffff;
+    color: $headingFontColor;
   }
 
   &__horizontal-line {
     margin-bottom: 20px;
     width: 100%;
     border: none;
-    border-top: 1px solid #b8bdc1;
+    border-top: 1px solid $footerHorizontalLineColor;
   }
 }
 
@@ -41,7 +41,7 @@
     text-decoration: none;
     font-family: 'Open Sans';
     line-height: 24px;
-    color: #ffffff;
+    color: $footerFontColor;
   }
 }
 
@@ -50,7 +50,7 @@
     font-family: 'Open Sans';
     font-weight: 700;
     line-height: 16px;
-    color: #ffffff;
+    color: $footerFontColor;
   }
 
   &__navigation {
@@ -60,7 +60,7 @@
 
   &__label-link {
     margin-bottom: 11px;
-    color: #ffffff;
+    color: $footerFontColor;
   }
 
   &__navigation-link {
@@ -97,7 +97,7 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 36px;
-    color: #ffffff;
+    color: $footerFontColor;
   }
 }
 
@@ -108,13 +108,13 @@
   &__years {
     font-size: 12px;
     line-height: 18px;
-    color: #b8bdc1;
+    color: $bottomFooterFontColor;
   }
 
   &__description {
     font-size: 12px;
     line-height: 18px;
-    color: #b8bdc1;
+    color: $bottomFooterFontColor;
   }
 }
 
@@ -125,12 +125,12 @@
   &__title {
     font-size: 12px;
     line-height: 18px;
-    color: #b8bdc1;
+    color: $bottomFooterFontColor;
   }
 
   &__name {
     font-size: 12px;
     line-height: 18px;
-    color: #b8bdc1;
+    color: $bottomFooterFontColor;
   }
 }

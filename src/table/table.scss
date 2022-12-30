@@ -1,7 +1,9 @@
+@import './variables.scss';
+
 .table {
   margin-bottom: 144px;
   width: 100%;
-  background-color: white;
+  background-color: $tableBackgroundColor;
   border-spacing: 0;
   border-collapse: separate;
 }
@@ -9,7 +11,7 @@
 .table tr {
   border: none;
   &:hover {
-    background-color: darken(#0066870a, 30%);
+    background-color: darken($rowBackgroundColor, 30%);
   }
 }
 
@@ -22,7 +24,7 @@
   font-family: 'Open Sans';
   font-size: 18px;
   line-height: 40px;
-  color: #212529;
+  color: $cellHeadFontColor;
 }
 
 .table img {
@@ -36,5 +38,5 @@
 }
 
 tbody tr:nth-of-type(odd) {
-  background-color: #0066870a;
+  background-color: $rowBackgroundColor;
 }
